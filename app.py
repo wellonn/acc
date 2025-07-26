@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 تطبيق نظام المحاسبة المتقدم
@@ -17,6 +18,7 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash
 import logging
+import flask  # تم إضافة هذا فقط لتصحيح flask.__version__
 
 # إعداد المسارات
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -168,7 +170,7 @@ def api_test():
         'timestamp': datetime.utcnow().isoformat(),
         'server_info': {
             'python_version': sys.version,
-            'flask_version': Flask.__version__
+            'flask_version': flask.__version__  # هنا تم التصحيح
         }
     })
 
@@ -363,7 +365,7 @@ if __name__ == '__main__':
     # تشغيل الخادم
     app.run(
         host='0.0.0.0',
-        port=5000,
+        port=8080,
         debug=True,
         threaded=True
     )
